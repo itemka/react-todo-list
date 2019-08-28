@@ -15,5 +15,4 @@ class TodoListTasks extends React.Component {
         )
     }
 }
-
-export default TodoListTasks
+export default TodoListTasks;

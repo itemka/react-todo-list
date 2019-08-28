@@ -6,7 +6,6 @@ import TodoListTasks from './TodoListTasks'
 
 class TodoList extends React.Component {
 
-
     //Восстановление state-а мы будем делать в специальном методе жизненного цикла (главный метод,
     // запоминайте его на всю жизнь) - методе ​componentDidMount (​он срабатывает один раз, в момент,
     // когда компонента отрисовалась)
@@ -140,6 +139,5 @@ class TodoList extends React.Component {
         );
     }
 }
-
 export default TodoList;
 

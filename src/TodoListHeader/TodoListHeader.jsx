@@ -10,10 +10,10 @@ class TodoListHeader extends React.Component {
 
                 <TodoListTitle title={this.props.title}/>
                 <AddNewItemForm addItem={this.props.addTask}/>
+
             </div>
 
         );
     }
 }
-
-export default TodoListHeader
+export default TodoListHeader;

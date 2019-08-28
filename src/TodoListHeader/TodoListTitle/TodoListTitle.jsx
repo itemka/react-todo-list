@@ -8,4 +8,5 @@ class TodoListTitle extends React.Component {
         );
     }
 }
+
 export default TodoListTitle;

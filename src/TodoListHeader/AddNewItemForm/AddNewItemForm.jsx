@@ -37,7 +37,7 @@ class AddNewItemForm extends React.Component {
             <div className="todoList-newTaskForm">
                 <input onKeyPress={this.onKeyPress} type="text" onChange={this.onChangeInput} className={classError}
                        placeholder="New task name" value={this.state.valueInput}/>
-                <button onClick={()=>this.onAddTaskClick()}>Add</button>
+                <button onClick={() => this.onAddTaskClick()}>Add</button>
             </div>
         );
     }
