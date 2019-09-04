@@ -3,6 +3,8 @@ import './App.css';
 import TodoListHeader from './TodoListHeader/TodoListHeader'
 import TodoListFooter from './TodoListFooter'
 import TodoListTasks from './TodoListTasks'
+import axios from "axios";
+import instance from "./api";
 
 class TodoList extends React.Component {
 
@@ -22,7 +24,7 @@ class TodoList extends React.Component {
             // });
 
             //Метод(callback) передает i проверку
-            let z = this.state.tasks.reduce( (i, item) => {
+            let z = this.state.tasks.reduce((i, item) => {
                 if (i < item.id) {
                     return item.id;
                 } else return i;
@@ -37,6 +39,7 @@ class TodoList extends React.Component {
 
         });
     }
+
     nextTaskId = 0;
     state = {
         tasks: [
@@ -52,14 +55,42 @@ class TodoList extends React.Component {
     // и метод, который будет брать данные из localStorage и устанавливать его как state:
     saveState = () => {
         let stateAsString = JSON.stringify(this.state);
-        localStorage.setItem("our-state"+this.props.id, stateAsString);
+        localStorage.setItem("our-state" + this.props.id, stateAsString);
     };
+
     restoreState = () => {
+        let state = this.state;
+        axios.get(
+            `https://social-network.samuraijs.com/api/1.0/todo-lists/${this.props.id}/tasks`,
+            {withCredentials: true}
+        )
+            .then(res => {
+                this.setState({tasks: res.data.items});
+            });
+    };
+
+    addTask = (newText) => {
+        // axios.post(
+        //     `https://social-network.samuraijs.com/api/1.0/todo-lists/${this.props.id}/tasks`,
+        //     {title: newText},
+        //     {
+        //         withCredentials: true,
+        //         headers: {"API-KEY": "326adc8b-48be-4905-a33d-14875af1c491"}
+        //     }
+        // )
+        instance.post(`todo-lists/${this.props.id}/tasks`, {title: newText})
+            .then(res => {
+                let newTacks = res.data.data.item;
+                this.setState({tasks: [...this.state.tasks, newTacks]});
+            });
+    };
+
+    _restoreState = () => {
         let state = {
             tasks: [],
             filterValue: "All"
         };
-        let stateAsString = localStorage.getItem("our-state"+this.props.id);
+        let stateAsString = localStorage.getItem("our-state" + this.props.id);
         if (stateAsString != null) {
             state = JSON.parse(stateAsString);
         }
@@ -73,8 +104,7 @@ class TodoList extends React.Component {
     // у метода setState есть второй параметр - колбэк, который сработает
     // тогда, когда стейт ТОЧНО обновится. И вот в нём мы можем вызвать наш ​saveState:
 
-
-    addTask = (newText) => {
+    _addTask = (newText) => {
         let newTask = {
             id: this.nextTaskId,
             title: newText,
@@ -139,5 +169,6 @@ class TodoList extends React.Component {
         );
     }
 }
+
 export default TodoList;
 

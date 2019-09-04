@@ -7,7 +7,6 @@ class TodoListTasks extends React.Component {
         const tasksElements = this.props.tasks.map(item => (
             <TodoListTask changeStatus={this.props.changeStatus} changeTitle={this.props.changeTitle} task={item}/>)
         );
-
         return (
             <div className='todoList-task'>
                 {tasksElements}
@@ -15,4 +14,5 @@ class TodoListTasks extends React.Component {
         )
     }
 }
+
 export default TodoListTasks;

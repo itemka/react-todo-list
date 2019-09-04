@@ -2,6 +2,8 @@ import React from 'react';
 import './App.css';
 import TodoList from "./TodoList";
 import AddNewItemForm from "./TodoListHeader/AddNewItemForm/AddNewItemForm";
+import axios from "axios";
+import instance from "./api";
 
 class App extends React.Component {
 
@@ -18,9 +20,9 @@ class App extends React.Component {
 
     componentDidMount() {
         this.restoreState();
-        this.setState({},()=>{
+        this.setState({}, () => {
             //Метод(callback) передает i проверку
-            let z = this.state.todoLists.reduce( (i, item) => {
+            let z = this.state.todoLists.reduce((i, item) => {
                 if (i < item.id) {
                     return item.id;
                 } else return i;
@@ -38,7 +40,28 @@ class App extends React.Component {
         let stateAsString = JSON.stringify(this.state);
         localStorage.setItem("our-stateGeneral", stateAsString);
     };
+
     restoreState = () => {
+        let state = this.state;
+        axios.get(
+            "https://social-network.samuraijs.com/api/1.0/todo-lists",
+            {withCredentials: true})
+            .then(res => {
+                // debugger
+                // console.log(res.data)
+                this.setState({todoLists: res.data});
+            });
+    };
+
+    onAddNewGeneralTaskClick = (title) => {
+        instance.post("todo-lists", {title: title})
+            .then(res => {
+                let todolist = res.data.data.item;
+                this.setState({todoLists: [...this.state.todoLists, todolist]});
+            });
+    };
+
+    _restoreState = () => {
         let state = {
             todoLists: [],
             title: '',
@@ -50,9 +73,9 @@ class App extends React.Component {
         this.setState(state);
     };
 
-    onAddNewGeneralTaskClick = (title) => {
+    _onAddNewGeneralTaskClick = (title) => {
         let newTodoList = {id: this.nextItemId, title: title};
-        this.setState({todoLists: [...this.state.todoLists, newTodoList]}, ()=>this.saveState())
+        this.setState({todoLists: [...this.state.todoLists, newTodoList]}, () => this.saveState());
         this.nextItemId++;
     };
 

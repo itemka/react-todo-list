@@ -23,16 +23,29 @@ class TodoListTask extends React.Component {
     };
 
     render = (props) => {
+        let priority = '';
+        switch (this.props.task.priority) {
+            case 0: priority = 'Low';
+                break;
+            case 1: priority = 'Middle';
+                break;
+            case 2: priority = 'Hi';
+                break;
+            case 3: priority = 'Urgently';
+                break;
+            case 4: priority = 'Later';
+                break;
+            default: priority = '';
+        }
 
         let done = this.props.task.isDone ? "todoList-task-done" : "todoList-task";
-
         return (
             <div className={done}>
                 <input type="checkbox" checked={this.props.task.isDone} onChange={this.onIsDoneChange}/>
                 {this.state.editMode
-                    ? <span onClick={this.activateEditMode}>{` ${this.props.task.id} - ${this.props.task.title}`} </span>
+                    ? <span onClick={this.activateEditMode}>{`${this.props.task.title}`} </span>
                     : <input autoFocus={true} onBlur={this.diactivateEditMode} onChange={this.onTitleChange} value={this.props.task.title}/>
-                }, priority - ${this.props.task.priority}
+                }, priority - {priority}
             </div>
         );
     }
