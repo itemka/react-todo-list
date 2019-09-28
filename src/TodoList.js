@@ -70,14 +70,6 @@ class TodoList extends React.Component {
     };
 
     addTask = (newText) => {
-        // axios.post(
-        //     `https://social-network.samuraijs.com/api/1.0/todo-lists/${this.props.id}/tasks`,
-        //     {title: newText},
-        //     {
-        //         withCredentials: true,
-        //         headers: {"API-KEY": "326adc8b-48be-4905-a33d-14875af1c491"}
-        //     }
-        // )
         instance.post(`todo-lists/${this.props.id}/tasks`, {title: newText})
             .then(res => {
                 let newTacks = res.data.data.item;
