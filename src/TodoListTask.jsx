@@ -43,7 +43,7 @@ class TodoListTask extends React.Component {
             <div className={done}>
                 <input type="checkbox" checked={this.props.task.isDone} onChange={this.onIsDoneChange}/>
                 {this.state.editMode
-                    ? <span onClick={this.activateEditMode}>{`${this.props.task.title}`} </span>
+                    ? <span onClick={this.activateEditMode}>{`${this.props.task.title}`}ç</span>
                     : <input autoFocus={true} onBlur={this.diactivateEditMode} onChange={this.onTitleChange} value={this.props.task.title}/>
                 }, priority - {priority}
             </div>
