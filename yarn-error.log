@@ -1,0 +1,69 @@
+Arguments: 
+  /usr/local/bin/node /Users/itemka/Developer/Projects/TasksList/node_modules/.bin/yarn add gh-page --dev
+
+PATH: 
+  /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/Library/Apple/bin:/Users/itemka/Developer/Projects/TasksList/node_modules/.bin
+
+Yarn version: 
+  1.19.1
+
+Node version: 
+  12.6.0
+
+Platform: 
+  darwin x64
+
+Trace: 
+  Error: https://registry.yarnpkg.com/gh-page: Not found
+      at Request.params.callback [as _callback] (/Users/itemka/Developer/Projects/TasksList/node_modules/yarn/lib/cli.js:66926:18)
+      at Request.self.callback (/Users/itemka/Developer/Projects/TasksList/node_modules/yarn/lib/cli.js:140564:22)
+      at Request.emit (events.js:203:13)
+      at Request.<anonymous> (/Users/itemka/Developer/Projects/TasksList/node_modules/yarn/lib/cli.js:141536:10)
+      at Request.emit (events.js:203:13)
+      at IncomingMessage.<anonymous> (/Users/itemka/Developer/Projects/TasksList/node_modules/yarn/lib/cli.js:141458:12)
+      at Object.onceWrapper (events.js:291:20)
+      at IncomingMessage.emit (events.js:208:15)
+      at endReadableNT (_stream_readable.js:1154:12)
+      at processTicksAndRejections (internal/process/task_queues.js:77:11)
+
+npm manifest: 
+  {
+    "name": "01-todolist",
+    "version": "0.1.0",
+    "private": true,
+    "homepage": "https://itemka.github.io/TasksList",
+    "dependencies": {
+      "axios": "^0.19.0",
+      "react": "^16.8.6",
+      "react-dom": "^16.8.6",
+      "react-scripts": "3.0.1",
+      "yarn": "^1.19.1"
+    },
+    "scripts": {
+      "start": "react-scripts start",
+      "build": "react-scripts build",
+      "test": "react-scripts test",
+      "eject": "react-scripts eject"
+    },
+    "eslintConfig": {
+      "extends": "react-app"
+    },
+    "browserslist": {
+      "production": [
+        ">0.2%",
+        "not dead",
+        "not op_mini all"
+      ],
+      "development": [
+        "last 1 chrome version",
+        "last 1 firefox version",
+        "last 1 safari version"
+      ]
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
