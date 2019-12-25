@@ -52,6 +52,15 @@ class App extends React.Component {
                 this.setState({todoLists: res.data});
             });
     };
+    testArray = [];
+    testRequest = () => {
+        axios.get("https://jsonplaceholder.typicode.com/posts", {withCredentials: true})
+            .then(response => {
+                // debugger
+                this.testArray = response.data;
+                console.log(this.testArray)
+            })
+    };
 
     onAddNewGeneralTaskClick = (title) => {
         instance.post("todo-lists", {title: title})
@@ -72,7 +81,7 @@ class App extends React.Component {
         }
         this.setState(state);
     };
-
+    
     _onAddNewGeneralTaskClick = (title) => {
         let newTodoList = {id: this.nextItemId, title: title};
         this.setState({todoLists: [...this.state.todoLists, newTodoList]}, () => this.saveState());
@@ -82,9 +91,20 @@ class App extends React.Component {
     render = () => {
         let mapTodoList = this.state.todoLists.map(item => <TodoList id={item.id} title={item.title}/>);
 
+        let qwe = this.testArray.map(item => <div key={item.id}>
+            <span>{item.userId}</span>
+            <span>{item.id}</span>
+            <span>{item.title}</span>
+            <div>{item.body}</div>
+        </div>);
+
+        console.log(qwe);
+
         return (
             <>
+                <div>{qwe}</div>
                 <div className={`todoList`}>
+                    <button onClick={this.testRequest}>Test</button>
                     <AddNewItemForm addItem={this.onAddNewGeneralTaskClick}/>
                 </div>
                 <div className={`flex`}>
